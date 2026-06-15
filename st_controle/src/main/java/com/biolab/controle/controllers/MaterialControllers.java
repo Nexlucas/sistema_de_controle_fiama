@@ -3,6 +3,7 @@ package com.biolab.controle.controllers;
 import com.biolab.controle.entities.Material;
 import com.biolab.controle.repositories.MaterialRepository;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,21 +19,23 @@ public class MaterialControllers {
     }
 
     @PostMapping
-    public String addMaterial(@RequestBody Material material){
+    public String addMaterial1(@RequestBody Material material){
         Material m = new Material(material.getNome(),material.getPeso(),material.getUnidade_medida(),material.getValor_unitario(),material.getQuantidade(),material.getCategoria());
         materialrepository.save(m);
         return "Salvo";
     }
 
-    @GetMapping(value = "tete")
+    @PostMapping(value = "teste")
+    public Material addmaterial(@RequestBody Material material){
+        Material m = new Material(material.getNome(),material.getPeso(),material.getUnidade_medida(),material.getValor_unitario(),material.getQuantidade(),material.getCategoria());
+        materialrepository.save(m);
+        return m;
+    }
+
+    @GetMapping(value = "/categoria")
     public List<Material> verMateriais1(){
         List<Material> listaMaterial = materialrepository.findAll();
         return listaMaterial;
-    }
-
-    @GetMapping
-    public List<Material> verMateriais(){
-        return materialrepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
     }
 
     @GetMapping("/categoria/{categoria}")
