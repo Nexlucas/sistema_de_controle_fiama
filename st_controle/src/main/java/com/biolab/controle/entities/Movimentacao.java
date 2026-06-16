@@ -7,24 +7,30 @@ public class Movimentacao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String data_movimentacao;
+    @ManyToOne
+    @JoinColumn(name = "id_data_entrada")
+    private Material data_entrada;
+    private String data_retirada;
     private int quantidade;
     @ManyToOne
     @JoinColumn(name = "material_id")
     private Material material;
 
+
     public Movimentacao() {
     }
 
-    public Movimentacao(String data_movimentacao, int quantidade, Material material) {
-        this.data_movimentacao = data_movimentacao;
+    public Movimentacao(Material data_entrada, String data_retirada, int quantidade, Material material) {
+        this.data_entrada = data_entrada;
+        this.data_retirada = data_retirada;
         this.quantidade = quantidade;
         this.material = material;
     }
 
-    public Movimentacao(int id, String data_movimentacao, int quantidade, Material material) {
+    public Movimentacao(int id, Material data_entrada, String data_retirada, int quantidade, Material material) {
         this.id = id;
-        this.data_movimentacao = data_movimentacao;
+        this.data_entrada = data_entrada;
+        this.data_retirada = data_retirada;
         this.quantidade = quantidade;
         this.material = material;
     }
@@ -37,12 +43,20 @@ public class Movimentacao {
         this.id = id;
     }
 
-    public String getData_movimentacao() {
-        return data_movimentacao;
+    public Material getData_entrada() {
+        return data_entrada;
     }
 
-    public void setData_movimentacao(String data_movimentacao) {
-        this.data_movimentacao = data_movimentacao;
+    public void setData_entrada(Material data_entrada) {
+        this.data_entrada = data_entrada;
+    }
+
+    public String getData_retirada() {
+        return data_retirada;
+    }
+
+    public void setData_retirada(String data_retirada) {
+        this.data_retirada = data_retirada;
     }
 
     public int getQuantidade() {

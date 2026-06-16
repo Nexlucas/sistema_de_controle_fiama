@@ -4,32 +4,46 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 @Entity
 public class Material {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @NotNull
+    @NotBlank
     private String nome;
+    @NotNull
     private int peso;
+    @NotNull
     private String unidade_medida;
+    @NotNull
+    @Positive
     private double valor_unitario;
+    @NotNull
+    @Positive
     private int quantidade;
+    @NotBlank
     private String categoria;
+    private String data_entrada;
 
     public Material() {
     }
 
-    public Material(String nome, int peso, String unidade_medida, double valor_unitario, int quantidade, String categoria) {
+    public Material(String nome, int peso, String unidade_medida, double valor_unitario, int quantidade, String categoria, String data_entrada) {
         this.nome = nome;
         this.peso = peso;
         this.unidade_medida = unidade_medida;
         this.valor_unitario = valor_unitario;
         this.quantidade = quantidade;
         this.categoria = categoria;
+        this.data_entrada = data_entrada;
     }
 
-    public Material(long id, String nome, int peso, String unidade_medida, double valor_unitario, int quantidade, String categoria) {
+    public Material(long id, String nome, int peso, String unidade_medida, double valor_unitario, int quantidade, String categoria, String data_entrada) {
         this.id = id;
         this.nome = nome;
         this.peso = peso;
@@ -37,6 +51,7 @@ public class Material {
         this.valor_unitario = valor_unitario;
         this.quantidade = quantidade;
         this.categoria = categoria;
+        this.data_entrada = data_entrada;
     }
 
     public long getId() {
@@ -93,5 +108,13 @@ public class Material {
 
     public void setCategoria(String categoria) {
         this.categoria = categoria;
+    }
+
+    public String getData_entrada() {
+        return data_entrada;
+    }
+
+    public void setData_entrada(String data_entrada) {
+        this.data_entrada = data_entrada;
     }
 }
