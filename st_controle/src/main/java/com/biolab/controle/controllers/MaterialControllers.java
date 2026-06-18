@@ -38,7 +38,4 @@ public class MaterialControllers {
     public List<Material> verPorCategoria(@PathVariable String categoria){
         return materialrepository.findBycategoria(categoria);
     }
-
-
-
 }

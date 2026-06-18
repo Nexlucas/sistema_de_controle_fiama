@@ -12,5 +12,4 @@ public interface MaterialRepository extends JpaRepository<Material, Long> {
 
     @Query(value = "SELECT categoria,SUM(quantidade * valor_unitario) as valor_total FROM material GROUP BY categoria ORDER BY valor_total DESC", nativeQuery = true)
     List<String> listarValorTotal();
-
 }
